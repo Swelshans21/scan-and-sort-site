@@ -6,10 +6,36 @@
 <title>Privacy Policy — Scan &amp; Sort</title>
 <meta name="description" content="Scan &amp; Sort keeps everything on your phone. No account, no servers, no tracking.">
 <link rel="icon" href="favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<!-- Locked down because these pages are entirely static: no scripts, no forms
+     and no third parties — the only image is the favicon, served from here.
+     Hosted on GitHub Pages, which cannot set response headers, so the policy
+     rides in a meta tag instead. 'unsafe-inline' for styles is only needed
+     because the CSS below is inline; moving it to a .css file would let that
+     go too. -->
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
 <style>
+  /* Self-hosted, so loading this page sends no visitor IP to Google. That
+     mattered most on the privacy page, which states the app involves no third
+     parties - embedding Google Fonts quietly made that not quite true, and a
+     German court (LG Muenchen I, 2022) held the IP transfer breaches GDPR.
+     Both families are variable fonts, so one file covers every weight used.
+     Latin subset only: it already includes the accents and inverted
+     punctuation Spanish needs. */
+  @font-face {
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 600 800;
+    font-display: swap;
+    src: url('fonts/archivo-latin.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url('fonts/ibm-plex-sans-latin.woff2') format('woff2');
+  }
   :root {
     --ground: #FAF8F5;
     --panel: #FFFFFF;
@@ -147,13 +173,13 @@
 
   <div class="eyebrow">Scan &amp; Sort</div>
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: August 2026</p>
+  <p class="updated">Last updated: November 2026</p>
 
   <div class="summary">
     <h2>The short version</h2>
     <ul>
       <li>Everything the app records stays <strong>on your phone</strong>. There is no server and no account.</li>
-      <li>We <strong>never collect, transmit, or sell</strong> your data — or your customers’.</li>
+      <li>We <strong>never sell</strong> your data — or your customers’ — and we never collect names, addresses, or anything that identifies anybody. The only thing that leaves your phone is an <strong>anonymous crash report</strong> if the app breaks; see <a href="#crash">Crash reports</a> below.</li>
       <li>The app records a recipient’s <strong>name only</strong>. It never stores or transmits street addresses.</li>
       <li>Label photos are read on the device and <strong>deleted immediately</strong>. They are never uploaded or saved.</li>
       <li>Completed trips <strong>delete themselves automatically</strong> after 7 days.</li>
@@ -203,7 +229,7 @@
     phone after <strong>7 days</strong>. You can also delete any trip yourself at any time.
   </p>
 
-  <h2>Crash reports</h2>
+  <h2 id="crash">Crash reports</h2>
   <p>
     If the app crashes, it sends a diagnostic report so the problem can be fixed. These reports
     contain technical information only — the type of error, where in the code it happened, the
@@ -222,6 +248,28 @@
     <li>Delete any trip, package, or vehicle from inside the app at any time.</li>
     <li><strong>Deleting the app removes everything.</strong> Because nothing is stored anywhere else, uninstalling permanently erases all of it. There is no copy for us to hold, hand over, or lose.</li>
   </ul>
+
+  <h2>How it is stored on the phone</h2>
+  <p>
+    Being straight about this, because &ldquo;on your phone&rdquo; is not the same as
+    &ldquo;encrypted.&rdquo; The app writes its data to the private storage area iOS and Android
+    give it, which other apps cannot read, but it is <strong>not separately encrypted</strong> by
+    us beyond the whole-device encryption your phone already applies when it is locked.
+  </p>
+  <p>
+    In practice that means the names are protected by your passcode and nothing else. Someone
+    holding your unlocked phone can read them &mdash; though they could equally just open the app.
+    We judged that adding a second lock inside an app you use with one hand, in a hurry, at a van,
+    would cost more than it protects. If that trade is wrong for you, the answer is a passcode and
+    a short auto-lock.
+  </p>
+
+  <h2>There is no backup</h2>
+  <p>
+    The flip side of keeping everything on your phone: if you lose it, reset it, or delete the app,
+    your trips are gone and <strong>we cannot restore them</strong>. There is no copy anywhere.
+    That is the same fact as &ldquo;we can never leak your data,&rdquo; viewed from the other side.
+  </p>
 
   <h2>A note for drivers</h2>
   <p>
