@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scan &amp; Sort — Support</title>
+<meta name="description" content="Help and contact for Scan &amp; Sort, the package-staging app for delivery drivers.">
+<link rel="icon" href="favicon.png">
+<!-- Locked down because these pages are entirely static: no scripts, no forms
+     and no third parties — the only image is the favicon, served from here.
+     Hosted on GitHub Pages, which cannot set response headers, so the policy
+     rides in a meta tag instead. 'unsafe-inline' for styles is only needed
+     because the CSS below is inline; moving it to a .css file would let that
+     go too. -->
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<style>
+  /* Self-hosted, so loading this page sends no visitor IP to Google. That
+     mattered most on the privacy page, which states the app involves no third
+     parties - embedding Google Fonts quietly made that not quite true, and a
+     German court (LG Muenchen I, 2022) held the IP transfer breaches GDPR.
+     Both families are variable fonts, so one file covers every weight used.
+     Latin subset only: it already includes the accents and inverted
+     punctuation Spanish needs. */
+  @font-face {
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 600 800;
+    font-display: swap;
+    src: url('fonts/archivo-latin.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url('fonts/ibm-plex-sans-latin.woff2') format('woff2');
+  }
+  :root {
+    --ground: #FAF8F5;
+    --panel: #FFFFFF;
+    --edge: #E6E0D7;
+    --ink: #1A1B1E;
+    --ink-2: #5F5A52;
+    --ink-3: #8B8478;
+    --amber: #B8720A;
+    --amber-soft: #FCF3E4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0E1013;
+      --panel: #16191E;
+      --edge: #272B32;
+      --ink: #F3F1EE;
+      --ink-2: #A9A49B;
+      --ink-3: #78726A;
+      --amber: #F5A623;
+      --amber-soft: #211907;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0E1013;
+    --panel: #16191E;
+    --edge: #272B32;
+    --ink: #F3F1EE;
+    --ink-2: #A9A49B;
+    --ink-3: #78726A;
+    --amber: #F5A623;
+    --amber-soft: #211907;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.68;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 56px 24px 96px; }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber);
+    font-weight: 600;
+  }
+
+  h1 {
+    font-family: Archivo, system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 6vw, 46px);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    margin: 14px 0 12px;
+    text-wrap: balance;
+  }
+
+  .lede { font-size: 18.5px; color: var(--ink-2); margin: 0 0 34px; max-width: 60ch; }
+
+  h2 {
+    font-family: Archivo, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    margin: 44px 0 16px;
+    padding-top: 24px;
+    border-top: 1px solid var(--edge);
+  }
+
+  p { margin: 0 0 16px; color: var(--ink-2); }
+  strong { color: var(--ink); font-weight: 600; }
+
+  a { color: var(--amber); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 3px; }
+
+  .contact {
+    background: var(--amber-soft);
+    border: 1px solid var(--edge);
+    border-radius: 12px;
+    padding: 24px 26px;
+  }
+  .contact p { color: var(--ink); margin-bottom: 10px; }
+  .contact .mail {
+    font-family: Archivo, system-ui, sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    word-break: break-all;
+  }
+  .contact .hint { font-size: 14.5px; color: var(--ink-2); margin: 12px 0 0; }
+
+  details {
+    border: 1px solid var(--edge);
+    border-radius: 10px;
+    background: var(--panel);
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  summary {
+    cursor: pointer;
+    padding: 15px 18px;
+    font-weight: 600;
+    color: var(--ink);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+";
+    color: var(--amber);
+    font-size: 21px;
+    line-height: 1;
+    flex: none;
+  }
+  details[open] summary::after { content: "–"; }
+  summary:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; }
+  .answer { padding: 0 18px 16px; }
+  .answer p:last-child { margin-bottom: 0; }
+
+  .disclaimer {
+    margin-top: 48px;
+    padding: 18px 20px;
+    border: 1px solid var(--edge);
+    border-radius: 10px;
+    background: var(--panel);
+    font-size: 14.5px;
+  }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 22px;
+    border-top: 1px solid var(--edge);
+    font-size: 14.5px;
+    color: var(--ink-3);
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Scan &amp; Sort</div>
+  <h1>Know exactly where every package is</h1>
+  <p class="lede">
+    Scan &amp; Sort replaces the scrap of paper on your dashboard. File each package into a zone
+    of your car as you load, then search a name at the stop and go straight to it.
+  </p>
+
+  <div class="contact">
+    <p>Something broken, confusing, or missing?</p>
+    <p class="mail"><a href="mailto:scanandsortsupport@gmail.com">scanandsortsupport@gmail.com</a></p>
+    <p class="hint">
+      A real person reads these. If you’re reporting a bug, the most useful things to include are
+      your phone model and what you were doing right before it happened — please don’t send
+      photos of shipping labels, since those contain customers’ information.
+    </p>
+  </div>
+
+  <h2>Common questions</h2>
+
+  <details>
+    <summary>Does this connect to my Amazon account?</summary>
+    <div class="answer">
+      <p>
+        No — and it never will. Scan &amp; Sort never asks for your delivery-app credentials and
+        does not talk to Amazon’s systems. It reads the printed name off a label with your camera,
+        the same way you read it with your eyes. Your driver account is not involved and is not
+        at risk.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Where is my data stored? Can you see it?</summary>
+    <div class="answer">
+      <p>
+        Everything lives on your phone. There is no server, no account, and no copy anywhere else,
+        so nobody — including us — can see your trips. Finished trips delete themselves after 7
+        days by default. Full detail in the <a href="./privacy.html">privacy policy</a>.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>The camera isn’t picking up the name.</summary>
+    <div class="answer">
+      <p>
+        Three things fix almost every case:
+      </p>
+      <p>
+        <strong>Back up a little.</strong> Phone cameras can’t focus closer than about four inches.
+        Holding the label too close is the most common cause — aim for roughly an arm’s length,
+        with the name and address block filling the frame.
+      </p>
+      <p>
+        <strong>Turn on the light.</strong> Tap the flashlight button in the corner of the camera
+        for dark bins and early mornings.
+      </p>
+      <p>
+        <strong>Hold still for a beat.</strong> Let the image sharpen before you tap Capture.
+      </p>
+      <p>
+        If a label is scuffed, wrinkled, or just stubborn, tap the failed entry in the list to type
+        the name instead — or switch to Type mode and use your keyboard’s microphone to say it.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>It read the wrong name.</summary>
+    <div class="answer">
+      <p>
+        Tap the entry in the recent list and choose Edit name. On the delivery screen, the pencil
+        button on any row does the same thing. Corrections stick for the whole trip.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>I put a package in the wrong zone.</summary>
+    <div class="answer">
+      <p>
+        On the loading screen, tap the package in the recent list and pick the right zone — it
+        moves immediately. Already past that point? On the delivery screen, press and hold the
+        package and choose the correct zone.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Someone has two packages in different spots.</summary>
+    <div class="answer">
+      <p>
+        The app catches this while you load and offers to move them together. If you keep them
+        apart, that stop is flagged with a ⚠ and lists both zones, so you grab both before walking
+        away.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Can I add a zone in the middle of loading?</summary>
+    <div class="answer">
+      <p>
+        Yes. Tap <strong>+ Zone</strong> at the end of the zone strip on the loading screen. Press
+        and hold any zone to rename it. Changes apply to the trip you’re on.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>I closed the app mid-route. Did I lose everything?</summary>
+    <div class="answer">
+      <p>
+        No. Your trip is saved continuously and survives closing the app, restarting, or a dead
+        battery. Open the app and your active trip is waiting exactly where you left it.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Does it need a signal?</summary>
+    <div class="answer">
+      <p>
+        No. Scan &amp; Sort works fully offline — dead-zone warehouses, basement garages, airplane
+        mode. Nothing it does requires a connection.
+      </p>
+    </div>
+  </details>
+
+  <div class="disclaimer">
+    <strong>Not affiliated with Amazon.</strong> Scan &amp; Sort is an independent app made by a
+    working delivery driver. It is not affiliated with, endorsed by, or connected to Amazon.com,
+    Inc. or any of its subsidiaries.
+  </div>
+
+  <footer>
+    <a href="./privacy.html">Privacy Policy</a>
+    <span>© 2026 Scan &amp; Sort</span>
+  </footer>
+
+</div>
+</body>
+</html>
